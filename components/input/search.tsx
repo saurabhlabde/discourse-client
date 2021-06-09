@@ -1,11 +1,13 @@
 import { FC } from "react";
+import SearchIcon from "../../icon/search";
 
 // style
 import {
   SearchSection,
   SearchForm,
   SearchInput,
-} from "../../styles/components/search";
+  SearchIconSection,
+} from "../../styles/components/input/search";
 
 interface ISearchCard {
   name: string;
@@ -32,6 +34,9 @@ export const SearchCard: FC<ISearchCard> = ({
             value={value}
             onChange={onChange ? onChange : undefined}
           />
+          <SearchIconSection>
+            <SearchIcon />
+          </SearchIconSection>
         </SearchForm>
       </SearchSection>
     </>
