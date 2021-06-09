@@ -55,9 +55,11 @@ export const MessageCard: FC<IMessageCard> = ({
             <TextSection>
               <ContentText>{text ? text : ""}</ContentText>
             </TextSection>
-            <MediaSection>
-              <ContentMedia src={media ? media : ""} />
-            </MediaSection>
+            {media?.trim() !== "" && (
+              <MediaSection>
+                <ContentMedia src={media ? media : ""} />
+              </MediaSection>
+            )}
           </TopSection>
           <BottomSection>
             <OtherInfoSection>

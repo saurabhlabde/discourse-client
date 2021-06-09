@@ -1,32 +1,87 @@
 import styled from "styled-components";
 
 
-export const MessageCardSection = styled.div``
+export const MessageCardSection = styled.div`
+display: flex;
+margin: 1rem 0;
+`
 
-export const ProfileSection = styled.div``
+export const ProfileSection = styled.div`
+height: 2em;
+width: 2em;
+border-radius: 5em;
+overflow: hidden;
 
-export const Profile = styled.img``
+`
 
-export const ContentSection = styled.div``
+export const Profile = styled.img`
+height: 100%;
+width: 100%;
+object-fit: cover;
+`
 
-export const TopSection = styled.div``
+export const ContentSection = styled.div`
+display: flex;
+flex-direction: column;
+`
 
-export const BottomSection = styled.div``
+export const TopSection = styled.div`
+background-color: ${props => props.theme.secondary};
+min-width: 17em;
+padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+-webkit-border-radius: 1em;
+-webkit-border-top-left-radius: 0.1rem;
+-moz-border-radius: 1em;
+-moz-border-radius-topleft: 0.1rem;
+border-radius: 1em;
+border-top-left-radius: 0.1rem;
+margin-left: 0.5rem;
+`
 
-export const TextSection = styled.div``
+export const BottomSection = styled.div`
+display: flex;
+`
 
-export const ContentText = styled.h1``
+export const TextSection = styled.div`
+margin: 0.5rem 0;
+`
 
-export const MediaSection = styled.div``
+export const ContentText = styled.h1`
+color:${props => props.theme.t_primary};
+font-size: 0.9em;
+`
 
-export const ContentMedia = styled.img``
+export const MediaSection = styled.div`
+height: 5em;
+width: 100%;
+border-radius: 0.8em;
+overflow: hidden;
+`
 
-export const OtherInfoSection = styled.div``
+export const ContentMedia = styled.img`
+height: 100%;
+width: 100%;
+object-fit: cover;
+`
+
+export const OtherInfoSection = styled.div`
+display: flex;
+margin: 0.6rem 0 0 1rem;
+`
 
 export const UsernameSection = styled.div``
 
-export const Username = styled.h1``
+export const Username = styled.h2`
+color:${props => props.theme.t_secondary};
+font-size: 0.7em;
+text-transform: capitalize;
+`
 
-export const TimeSection = styled.div``
+export const TimeSection = styled.div`
+margin-left: 0.3rem;
+`
 
-export const TimeT = styled.h1``
+export const TimeT = styled.h2`
+color:${props => props.theme.t_secondary};
+font-size: 0.7em;
+`

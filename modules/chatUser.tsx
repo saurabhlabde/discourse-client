@@ -18,7 +18,9 @@ import {
 // type
 import { IUser } from "../components/card/user";
 
-export const ChatUser: FC = () => {
+export const ChatUser: FC<any> = ({ router }) => {
+  console.log(router, "router");
+
   const fakeNav = {
     id: 1,
     profileImage:

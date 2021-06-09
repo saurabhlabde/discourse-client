@@ -52,7 +52,7 @@ export const TopCard: FC<ITopCard> = ({
                 <LastName>{lastname ? lastname : ""}</LastName>
               </FLNameSection>
               <UsernameSection>
-                <Username>{username ? username : ""}</Username>
+                <Username>@{username ? username : ""}</Username>
               </UsernameSection>
             </TopSection>
             <BottomSection>
