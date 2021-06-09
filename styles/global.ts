@@ -9,4 +9,5 @@ export const GlobalStyle = createGlobalStyle`
         font-family: Rubik;
         font-weight: normal;
 }
+
 `
