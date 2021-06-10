@@ -8,5 +8,10 @@
     "**/node_modules": true,
     "styles": false
   },
-  "workspace.isHidden": false
+  "workspace.isHidden": false,
+  "cSpell.ignoreWords": [
+    "firstname",
+    "inmemory",
+    "lastname"
+  ]
 }

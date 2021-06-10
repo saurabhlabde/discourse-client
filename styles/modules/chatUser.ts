@@ -28,3 +28,16 @@ export const MessageHeading = styled.h1`
 color:${props => props.theme.t_primary};
 font-size: 1em;
 `
+
+export const NotAnyMessageSection = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+padding: 10rem 0;
+`
+
+export const NotMessage = styled.h1`
+color:${props => props.theme.t_secondary};
+font-size: 1.1em;
+`

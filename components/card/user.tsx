@@ -46,7 +46,13 @@ export const UserCard: FC<IUserCard> = ({
       <CardSection>
         <LeftSection>
           <ProfileSection>
-            <Profile src={profileImage ? profileImage : ""} />
+            <Profile
+              src={
+                profileImage?.trim() !== ""
+                  ? profileImage
+                  : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.yvrNJL6zproxnPzT6fZurwHaJw%26pid%3DApi&f=1"
+              }
+            />
           </ProfileSection>
           <UserInfoSection>
             <UsernameFLNameSection>
