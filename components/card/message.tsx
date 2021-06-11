@@ -48,7 +48,13 @@ export const MessageCard: FC<IMessageCard> = ({
     <>
       <MessageCardSection>
         <ProfileSection>
-          <Profile src={profileImage ? profileImage : ""} />
+          <Profile
+            src={
+              profileImage
+                ? profileImage
+                : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.lqlskL6yTMD8CgwD2uam0AHaFI%26pid%3DApi&f=1"
+            }
+          />
         </ProfileSection>
         <ContentSection>
           <TopSection>

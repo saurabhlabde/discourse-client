@@ -41,7 +41,13 @@ export const TopCard: FC<ITopCard> = ({
         <BackButton />
         <UserInfoSection>
           <ProfileSection>
-            <Profile src={profileImage ? profileImage : ""} />
+            <Profile
+              src={
+                profileImage
+                  ? profileImage
+                  : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.h81O9GEMzhdpZ7y4K1E2wwHaJ4%26pid%3DApi&f=1"
+              }
+            />
           </ProfileSection>
           <InfoSection>
             <TopSection>

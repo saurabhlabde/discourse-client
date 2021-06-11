@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const MessageCardSection = styled.div`
 display: flex;
-margin: 1rem 0;
+margin: 0.8rem 0;
 `
 
 export const ProfileSection = styled.div`
@@ -11,7 +11,6 @@ height: 2em;
 width: 2em;
 border-radius: 5em;
 overflow: hidden;
-
 `
 
 export const Profile = styled.img`
@@ -27,8 +26,8 @@ flex-direction: column;
 
 export const TopSection = styled.div`
 background-color: ${props => props.theme.secondary};
-min-width: 17em;
-padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+width: max-content;
+padding: 0.5rem 1rem 0.5rem 1rem;
 -webkit-border-radius: 1em;
 -webkit-border-top-left-radius: 0.1rem;
 -moz-border-radius: 1em;

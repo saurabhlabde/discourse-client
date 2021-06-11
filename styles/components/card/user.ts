@@ -41,6 +41,7 @@ align-items: center;
 justify-content: flex-start;
 flex-direction: column;
 margin-left: 0.5rem;
+margin-top: 0.5rem;
 
 `
 
@@ -59,32 +60,31 @@ display: flex;
 
 export const Username = styled.h1`
 color:${props => props.theme.t_secondary};
-font-size: 0.9em;
+font-size: 0.8em;
 text-transform: capitalize;
 `
 
 export const FirstName = styled.h2`
 color:${props => props.theme.t_primary};
-font-size: 1em;
+font-size: 0.9em;
 text-transform: capitalize;
 
 `
 
 export const LastName = styled.h2`
 color:${props => props.theme.t_primary};
-font-size: 1em;
+font-size: 0.9em;
 margin-left: 0.2rem;
-
 `
 
 export const LastMessageSection = styled.div`
 width: 100%;
-margin-top: 0.5rem;
+margin-top: 0.3rem;
 `
 
 export const LastMessage = styled.h2`
 color:${props => props.theme.t_secondary};
-font-size: 0.9em;
+font-size: 0.8em;
 text-transform: capitalize;
 `
 

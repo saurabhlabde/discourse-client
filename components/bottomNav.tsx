@@ -36,14 +36,14 @@ export const NavBottom = () => {
             return (
               <>
                 <Link href={icon.link}>
-                  <NavItemSection>
+                  <NavItemSection key={i}>
                     <BackIcon />
                   </NavItemSection>
                 </Link>
               </>
             );
           })}
-          
+
         <NavItemSection onClick={handelVisble}>
           <BackIcon />
         </NavItemSection>

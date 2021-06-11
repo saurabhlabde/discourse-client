@@ -22,14 +22,19 @@ import {
 } from "../../styles/components/card/user";
 
 export interface IUser {
-  id: number;
-  profileImage: string;
-  firstname: string;
-  lastname: string;
-  username: string;
-  Message: {
+  User: {
     id: number;
-    message: string;
+    profileImage: string;
+    firstname: string;
+    lastname: string;
+    username: string;
+  };
+
+  lastMessage: {
+    id: number;
+    text: string;
+    status: string;
+    media: string;
     createdAt: string;
   };
 }
@@ -38,9 +43,10 @@ interface IUserCard {
   props: IUser;
 }
 
-export const UserCard: FC<IUserCard> = ({
-  props: { id, firstname, lastname, username, profileImage, Message },
-}) => {
+export const UserCard: FC<IUserCard> = ({ props: { User, lastMessage } }) => {
+  const { id: uid, firstname, lastname, profileImage, username } = User;
+  const { createdAt, id, media, status, text } = lastMessage;
+
   const activeUser = localStorage.getItem("USER");
 
   const userLink = `/cr/${activeUser}?room=${username}`;
@@ -71,9 +77,7 @@ export const UserCard: FC<IUserCard> = ({
                 </UsernameSection>
               </UsernameFLNameSection>
               <LastMessageSection>
-                <LastMessage>
-                  {Message.message ? Message.message : ""}
-                </LastMessage>
+                <LastMessage>{text ? text : ""}</LastMessage>
               </LastMessageSection>
             </UserInfoSection>
           </LeftSection>
