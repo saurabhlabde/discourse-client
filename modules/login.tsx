@@ -40,6 +40,7 @@ export const LoginPage = () => {
     if (data?.login) {
       if (data.login?.Tokens[0].token) {
         localStorage.setItem("JWT_TOKEN", data.login?.Tokens[0].token);
+        localStorage.setItem("USER", data.login.username);
         router.push("/");
       }
     }

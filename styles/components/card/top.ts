@@ -9,16 +9,6 @@ border-radius: 1.3em;
 padding: 0.8rem 0.5rem;
 `
 
-export const BackButton = styled.div`
-background-color: ${props => props.theme.primary};
-display: flex;
-align-items: center;
-justify-content: center;
-height: 2.2em;
-width: 2.2em;
-border-radius: 5em;
-`
-
 export const UserInfoSection = styled.div`
 display: flex;
 margin-left: 0.8rem;

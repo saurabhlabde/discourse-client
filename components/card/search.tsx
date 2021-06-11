@@ -27,25 +27,20 @@ export interface IUser {
   firstname: string;
   lastname: string;
   username: string;
-  Message: {
-    id: number;
-    message: string;
-    createdAt: string;
-  };
+  status: string;
 }
 
-interface IUserCard {
+interface ISearchCard {
   props: IUser;
 }
 
-export const UserCard: FC<IUserCard> = ({
-  props: { id, firstname, lastname, username, profileImage, Message },
+export const SearchCard: FC<ISearchCard> = ({
+  props: { id, firstname, lastname, username, profileImage, status },
 }) => {
   const activeUser = localStorage.getItem("USER");
 
   const userLink = `/cr/${activeUser}?room=${username}`;
 
-  const time = "1d";
   return (
     <>
       <Link href={userLink}>
@@ -71,17 +66,11 @@ export const UserCard: FC<IUserCard> = ({
                 </UsernameSection>
               </UsernameFLNameSection>
               <LastMessageSection>
-                <LastMessage>
-                  {Message.message ? Message.message : ""}
-                </LastMessage>
+                <LastMessage>{status ? status : "no status"}</LastMessage>
               </LastMessageSection>
             </UserInfoSection>
           </LeftSection>
-          <RightSection>
-            <TimeSection>
-              <TimeT>{time}</TimeT>
-            </TimeSection>
-          </RightSection>
+          <RightSection></RightSection>
         </CardSection>
       </Link>
     </>

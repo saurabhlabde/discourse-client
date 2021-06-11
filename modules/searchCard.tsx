@@ -1,22 +1,25 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { SearchCard } from "../components/input/search";
 
 export const SearchBox = () => {
-  const [value, setValue] = useState("");
+  const [query, setQuery] = useState("");
+
+  const router = useRouter();
 
   const onValueChange = (e: any) => {
-    setValue(e.target.value);
+    setQuery(e.target.value);
   };
 
   const searchHandel = (e: any) => {
     e?.preventDefault();
-    console.log("search....");
+    router.push(`/search?q=${query}`);
   };
 
   return (
     <SearchCard
-      name="value"
-      value={value}
+      name="query"
+      value={query}
       onChange={onValueChange}
       onSubmit={searchHandel}
     />

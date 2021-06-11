@@ -1,10 +1,9 @@
 import { gql } from "@apollo/client";
 
 
-
-export const USER_ONE = gql`
-query GetOneUser($username:String!){
-  getOneUser(user: { username: $username }) {
+export const RECOMMENDATION = gql`
+query {
+  recommendation {
     id
     firstname
     lastname

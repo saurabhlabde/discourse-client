@@ -6,6 +6,8 @@ background-color: ${props => props.theme.primary};
 padding: 0 1rem;
 height: 100vh;
 width: 100vw;
+position: relative;
+
 `
 
 export const NavSection = styled.div`
@@ -34,7 +36,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 width: 100%;
-padding: 10rem 0;
+padding: 2rem 0;
 `
 
 export const NotMessage = styled.h1`

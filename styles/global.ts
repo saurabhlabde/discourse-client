@@ -10,4 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: normal;
 }
 
+.s_cus{
+        padding-top: 2rem !important;
+}
 `

@@ -4,7 +4,6 @@ import BackIcon from "../../icon/back";
 // style
 import {
   TopCardSection,
-  BackButton,
   UserInfoSection,
   ProfileSection,
   Profile,
@@ -19,6 +18,7 @@ import {
   StatusSection,
   Status,
 } from "../../styles/components/card/top";
+import { BackButton } from "../button/back";
 
 interface IUserTop {
   id: number;
@@ -38,9 +38,7 @@ export const TopCard: FC<ITopCard> = ({
   return (
     <>
       <TopCardSection>
-        <BackButton>
-          <BackIcon />
-        </BackButton>
+        <BackButton />
         <UserInfoSection>
           <ProfileSection>
             <Profile src={profileImage ? profileImage : ""} />

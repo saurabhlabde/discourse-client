@@ -23,6 +23,7 @@ import { useQuery } from "@apollo/client";
 import { USER } from "../gql/user/user";
 import { MESSAGE } from "../gql/message/get";
 import { CHAT_USER } from "../gql/message/chatUser";
+import { NavBottom } from "../components/bottomNav";
 
 export const ChatUser: FC<any> = () => {
   const [user, setUser] = useState({
@@ -82,6 +83,7 @@ export const ChatUser: FC<any> = () => {
             </>
           )}
         </UserCardSection>
+        <NavBottom />
       </ChatsUserSection>
     </>
   );
