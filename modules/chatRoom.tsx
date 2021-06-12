@@ -87,6 +87,12 @@ export const ChatRoom = ({ router }) => {
   }, []);
 
   useEffect(() => {
+    if (!hasLoading && mData) {
+      srcollBarBottom();
+    }
+  }, [hasLoading, mData]);
+
+  useEffect(() => {
     if (tData?.getOneUser) {
       setTopUser(tData.getOneUser);
     }
@@ -130,6 +136,11 @@ export const ChatRoom = ({ router }) => {
     });
   };
 
+  const srcollBarBottom = () => {
+    const messageSec = document.querySelector("#mc_sec");
+    messageSec.scrollTop = messageSec.scrollHeight - messageSec.clientHeight;
+  };
+
   if (hasLoading) {
     return <h1>Loading...</h1>;
   }
@@ -141,9 +152,8 @@ export const ChatRoom = ({ router }) => {
           <TopSection>
             <TopCard props={topUser} />
           </TopSection>
-          <MessageCardSection>
+          <MessageCardSection id="mc_sec">
             {messages?.map((mess: IMessage) => {
-              console.log(mess, "mess");
               return mess?.User?.username === userName ? (
                 <UserMessageCard key={mess.id} props={mess} />
               ) : (

@@ -42,7 +42,9 @@ export const UserMessageCard: FC<IMessageCard> = ({
         <ContentSection>
           <UserTopSection>
             <TextSection>
-              <ContentText>{text ? text : ""}</ContentText>
+              <ContentText>
+                <span>{text ? text : ""}</span>
+              </ContentText>
             </TextSection>
             {media?.trim() !== "" && (
               <MediaSection>
@@ -53,10 +55,14 @@ export const UserMessageCard: FC<IMessageCard> = ({
           <BottomSection>
             <UserOtherInfoSection>
               <UsernameSection>
-                <Username>{username ? "You" : ""}</Username>
+                <Username>
+                  <span>{username ? "You" : ""}</span>
+                </Username>
               </UsernameSection>
               <TimeSection>
-                <TimeT>{time}</TimeT>
+                <TimeT>
+                  <span>{time}</span>
+                </TimeT>
               </TimeSection>
             </UserOtherInfoSection>
           </BottomSection>

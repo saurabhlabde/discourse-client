@@ -27,7 +27,6 @@ flex-direction: column;
 
 export const TopSection = styled.div`
 background-color: ${props => props.theme.b_primary};
-width: max-content;
 padding: 0.5rem 1rem 0.5rem 1rem;
 -webkit-border-radius: 1em;
 -webkit-border-top-left-radius: 0.1rem;
@@ -36,6 +35,8 @@ padding: 0.5rem 1rem 0.5rem 1rem;
 border-radius: 1em;
 border-top-left-radius: 0.1rem;
 margin-left: 0.5rem;
+max-width: 18em;
+
 `
 
 export const BottomSection = styled.div`
@@ -50,6 +51,7 @@ export const ContentText = styled.h1`
 color:${props => props.theme.t_primary};
 font-size: 0.9em;
 cursor: default;
+overflow-wrap: break-word;
 `
 
 export const MediaSection = styled.div`
