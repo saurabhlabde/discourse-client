@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import BackIcon from "../icon/back";
+import HomeIcon from "../icon/home";
+import LightIcon from "../icon/light";
+import LogoutIcon from "../icon/logout";
 import {
   NavBottomSection,
   NavItemSection,
+  ProfileSection,
 } from "../styles/components/bottomNav";
 
 export const NavBottom = () => {
@@ -11,16 +15,19 @@ export const NavBottom = () => {
 
   const Icons = [
     {
+      link: "/",
+      name: "home",
+      icon: <HomeIcon />,
+    },
+    {
       link: "",
-      name: "P",
+      name: "theme",
+      icon: <LightIcon />,
     },
     {
       link: "/logout",
-      name: "L",
-    },
-    {
-      link: "/",
-      name: "H",
+      name: "logout",
+      icon: <LogoutIcon />,
     },
   ];
 
@@ -31,20 +38,34 @@ export const NavBottom = () => {
   return (
     <>
       <NavBottomSection>
+        {visible && (
+          <NavItemSection>
+            <ProfileSection
+              src={
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.IwhOChg5puRQdL2Fn-rZgAAAAA%26pid%3DApi&f=1"
+              }
+            />
+          </NavItemSection>
+        )}
         {visible &&
           Icons?.map((icon, i) => {
             return (
               <>
                 <Link href={icon.link}>
-                  <NavItemSection key={i}>
-                    <BackIcon />
+                  <NavItemSection key={i} className={`ni_${icon.name}`}>
+                    {icon.icon}
                   </NavItemSection>
                 </Link>
               </>
             );
           })}
 
-        <NavItemSection onClick={handelVisble}>
+        <NavItemSection
+          onClick={handelVisble}
+          className={`sh_icon ${
+            visible ? "sh_icon_visible" : "sh_icon_unVisible"
+          } `}
+        >
           <BackIcon />
         </NavItemSection>
       </NavBottomSection>

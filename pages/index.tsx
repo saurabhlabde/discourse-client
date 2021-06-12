@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useEffect } from "react";
 
 // component
 import { IndexPage } from "../modules/index";

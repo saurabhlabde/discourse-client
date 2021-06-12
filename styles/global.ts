@@ -8,8 +8,13 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: Rubik;
         font-weight: normal;
+        scrollbar-width: none;
+
 }
 
+*::-webkit-scrollbar {
+    display: none;
+}
 .s_cus{
         padding-top: 2rem !important;
 }
