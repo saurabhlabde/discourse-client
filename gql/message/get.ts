@@ -8,7 +8,7 @@ query GetMessage($roomUsername:String!){
     text
     media
     status
-    createdAt
+    createdAtIso
     User {
       id
       username

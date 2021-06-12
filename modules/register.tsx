@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { REGISTER } from "../gql/auth/register";
 
 // component
 import { AuthPage } from "./auth";
@@ -12,6 +15,20 @@ export const RegisterPage = () => {
     status: "",
     password: "",
   });
+
+  const [onRegister, { data, loading, error }] = useMutation(REGISTER);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (data?.createUser) {
+      if (data.createUser?.Tokens[0].token) {
+        localStorage.setItem("JWT_TOKEN", data.createUser?.Tokens[0].token);
+        localStorage.setItem("USER", data.createUser.username);
+        router.push("/");
+      }
+    }
+  }, [data?.createUser]);
 
   const inputForm = [
     {
@@ -59,7 +76,9 @@ export const RegisterPage = () => {
 
   const onSubmitHandel = (e: any) => {
     e?.preventDefault();
-    console.log("register...");
+    onRegister({
+      variables: value,
+    });
   };
 
   return (

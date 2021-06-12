@@ -16,10 +16,13 @@ margin: 1.5rem 0;
 export const LeftSection = styled.div`
 display: flex;
 flex: 1;
+cursor: default;
 `
 
 export const RightSection = styled.div`
 display: flex;
+cursor: default;
+
 `
 
 export const ProfileSection = styled.div`
@@ -42,7 +45,6 @@ justify-content: flex-start;
 flex-direction: column;
 margin-left: 0.5rem;
 margin-top: 0.5rem;
-
 `
 
 export const UsernameFLNameSection = styled.div`
@@ -56,6 +58,7 @@ margin-left: 0.3rem;
 
 export const FLNameSection = styled.div`
 display: flex;
+
 `
 
 export const Username = styled.h1`
@@ -90,6 +93,7 @@ text-transform: capitalize;
 
 export const TimeSection = styled.div`
 display: flex;
+padding-top: 1.4rem;
 `
 
 export const TimeT = styled.h2`

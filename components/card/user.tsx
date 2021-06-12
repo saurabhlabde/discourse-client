@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
+import { AgoTime } from "../../utils/TimeAgo";
 
 // style
 import {
@@ -35,7 +36,7 @@ export interface IUser {
     text: string;
     status: string;
     media: string;
-    createdAt: string;
+    createdAtIso: string;
   };
 }
 
@@ -45,13 +46,14 @@ interface IUserCard {
 
 export const UserCard: FC<IUserCard> = ({ props: { User, lastMessage } }) => {
   const { id: uid, firstname, lastname, profileImage, username } = User;
-  const { createdAt, id, media, status, text } = lastMessage;
+  const { createdAtIso, id, media, status, text } = lastMessage;
 
   const activeUser = localStorage.getItem("USER");
 
   const userLink = `/cr/${activeUser}?room=${username}`;
 
-  const time = "1d";
+  const time = AgoTime({ created: createdAtIso });
+
   return (
     <>
       <Link href={userLink}>

@@ -7,7 +7,6 @@ import {
   ProfileSection,
   Profile,
   ContentSection,
-  TopSection,
   ContentText,
   TextSection,
   ContentMedia,
@@ -19,23 +18,14 @@ import {
   TimeSection,
   TimeT,
 } from "../../styles/components/card/message";
+import { IMessageCard } from "./message";
+import {
+  UserTopSection,
+  UserMessageCardSection,
+  UserOtherInfoSection,
+} from "../../styles/components/card/userMessage";
 
-export interface IMessage {
-  id: number;
-  createdAtIso: string;
-  media: string;
-  text: string;
-  User: {
-    id: number;
-    username: string;
-    profileImage: string;
-  };
-}
-export interface IMessageCard {
-  props: IMessage;
-}
-
-export const MessageCard: FC<IMessageCard> = ({
+export const UserMessageCard: FC<IMessageCard> = ({
   props: {
     id,
     text,
@@ -48,7 +38,29 @@ export const MessageCard: FC<IMessageCard> = ({
 
   return (
     <>
-      <MessageCardSection>
+      <UserMessageCardSection>
+        <ContentSection>
+          <UserTopSection>
+            <TextSection>
+              <ContentText>{text ? text : ""}</ContentText>
+            </TextSection>
+            {media?.trim() !== "" && (
+              <MediaSection>
+                <ContentMedia src={media ? media : ""} />
+              </MediaSection>
+            )}
+          </UserTopSection>
+          <BottomSection>
+            <UserOtherInfoSection>
+              <UsernameSection>
+                <Username>{username ? "You" : ""}</Username>
+              </UsernameSection>
+              <TimeSection>
+                <TimeT>{time}</TimeT>
+              </TimeSection>
+            </UserOtherInfoSection>
+          </BottomSection>
+        </ContentSection>
         <ProfileSection>
           <Profile
             src={
@@ -58,29 +70,7 @@ export const MessageCard: FC<IMessageCard> = ({
             }
           />
         </ProfileSection>
-        <ContentSection>
-          <TopSection>
-            <TextSection>
-              <ContentText>{text ? text : ""}</ContentText>
-            </TextSection>
-            {media?.trim() !== "" && (
-              <MediaSection>
-                <ContentMedia src={media ? media : ""} />
-              </MediaSection>
-            )}
-          </TopSection>
-          <BottomSection>
-            <OtherInfoSection>
-              <UsernameSection>
-                <Username>{username ? username : ""}</Username>
-              </UsernameSection>
-              <TimeSection>
-                <TimeT>{time}</TimeT>
-              </TimeSection>
-            </OtherInfoSection>
-          </BottomSection>
-        </ContentSection>
-      </MessageCardSection>
+      </UserMessageCardSection>
     </>
   );
 };

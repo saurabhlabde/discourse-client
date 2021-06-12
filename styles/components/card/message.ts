@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const MessageCardSection = styled.div`
 display: flex;
 margin: 0.8rem 0;
+align-self: flex-start;
 `
 
 export const ProfileSection = styled.div`
@@ -25,7 +26,7 @@ flex-direction: column;
 `
 
 export const TopSection = styled.div`
-background-color: ${props => props.theme.secondary};
+background-color: ${props => props.theme.b_primary};
 width: max-content;
 padding: 0.5rem 1rem 0.5rem 1rem;
 -webkit-border-radius: 1em;
@@ -48,6 +49,7 @@ margin: 0.5rem 0;
 export const ContentText = styled.h1`
 color:${props => props.theme.t_primary};
 font-size: 0.9em;
+cursor: default;
 `
 
 export const MediaSection = styled.div`

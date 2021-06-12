@@ -26,6 +26,8 @@ import { CHAT_USER } from "../gql/message/chatUser";
 import { NavBottom } from "../components/bottomNav";
 
 export const ChatUser: FC<any> = () => {
+  const [hasLoading, setHasLoading] = useState(true);
+
   const [user, setUser] = useState({
     id: null,
     profileImage: null,
@@ -37,6 +39,11 @@ export const ChatUser: FC<any> = () => {
   const { data, loading, error } = useQuery(USER);
 
   const { data: mData, loading: mLoading, error: mError } = useQuery(CHAT_USER);
+
+  useEffect(() => {
+    const load: boolean = loading || mLoading;
+    setHasLoading(load);
+  }, [mLoading, loading]);
 
   useEffect(() => {
     if (data?.getUser) {
@@ -56,35 +63,41 @@ export const ChatUser: FC<any> = () => {
     }
   }, [mData?.chatUsers]);
 
-  return (
-    <>
-      <ChatsUserSection>
-        <NavSection>
-          <Nav props={user} />
-        </NavSection>
-        <SearchSection>
-          <SearchBox />
-        </SearchSection>
-        <UserCardSection>
-          <MessageHeadingSection>
-            <MessageHeading>Message</MessageHeading>
-          </MessageHeadingSection>
-          {message?.length >= 1 ? (
-            <>
-              {message?.map((user: IUser) => {
-                return <UserCard key={user.id} props={user} />;
-              })}
-            </>
-          ) : (
-            <>
-              <NotAnyMessageSection>
-                <NotMessage>Haven't any message yet!</NotMessage>
-              </NotAnyMessageSection>
-            </>
-          )}
-        </UserCardSection>
-        <NavBottom />
-      </ChatsUserSection>
-    </>
-  );
+  if (hasLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!hasLoading) {
+    return (
+      <>
+        <ChatsUserSection>
+          <NavSection>
+            <Nav props={user} />
+          </NavSection>
+          <SearchSection>
+            <SearchBox />
+          </SearchSection>
+          <UserCardSection>
+            <MessageHeadingSection>
+              <MessageHeading>Message</MessageHeading>
+            </MessageHeadingSection>
+            {message?.length >= 1 ? (
+              <>
+                {message?.map((user: IUser) => {
+                  return <UserCard key={user.User.id} props={user} />;
+                })}
+              </>
+            ) : (
+              <>
+                <NotAnyMessageSection>
+                  <NotMessage>Haven't any message yet!</NotMessage>
+                </NotAnyMessageSection>
+              </>
+            )}
+          </UserCardSection>
+          <NavBottom />
+        </ChatsUserSection>
+      </>
+    );
+  }
 };

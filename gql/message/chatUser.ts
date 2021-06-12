@@ -16,7 +16,7 @@ query{
       text
       media
       status
-      createdAt
+      createdAtIso
     }
   }
 }

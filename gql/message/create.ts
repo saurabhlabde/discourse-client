@@ -9,7 +9,7 @@ mutation CreateMessage($roomUsername:String!,$text:String!,$media:String!){
     text
     media
     status
-    createdAt
+    createdAtIso
     User {
       id
       username
