@@ -70,3 +70,25 @@ svg{
 
 `
 
+
+export const MediaSelectSection = styled.div`
+height: 2.5em;
+width: 2.5em;
+border-radius: 5em;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 0.5rem;
+
+:hover{
+background-color: ${props => props.theme.primary};
+}
+
+svg{
+        height: 1.2em;
+        width: 1.2em;
+        path{
+                fill:${props => props.theme.t_primary}
+        }
+}
+`

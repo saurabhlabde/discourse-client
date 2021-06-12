@@ -4,6 +4,13 @@ import { TopSection, MessageCardSection, OtherInfoSection } from './message'
 
 export const UserMessageCardSection = styled(MessageCardSection)`
 align-self: flex-end;
+
+.icon_sec_v{
+        display: flex;
+}
+.icon_sec_uv{
+        display: none;
+}
 `
 
 export const UserTopSection = styled(TopSection)`

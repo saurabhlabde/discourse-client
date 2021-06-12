@@ -1,5 +1,6 @@
 import { FC } from "react";
 import MessageIcon from "../../icon/message";
+import MediaIcon from "../../icon/media";
 
 // style
 import {
@@ -10,6 +11,7 @@ import {
   InputSection,
   Input,
   SendButton,
+  MediaSelectSection,
 } from "../../styles/components/input/message";
 
 interface IAddMessage {
@@ -42,7 +44,10 @@ export const AddMessage: FC<IAddMessage> = ({
               onChange={onChange ? onChange : undefined}
             />
           </InputSection>
-          <SendButton>
+          <MediaSelectSection>
+            <MediaIcon />
+          </MediaSelectSection>
+          <SendButton onClick={onSubmit ? onSubmit : undefined}>
             <MessageIcon />
           </SendButton>
         </MessageForm>

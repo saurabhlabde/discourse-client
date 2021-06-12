@@ -1,9 +1,12 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { AgoTime } from "../../utils/TimeAgo";
+
+import LikeIcon from "../../icon/like";
+import LikeFillIcon from "../../icon/likeFill";
+import DeleteIcon from "../../icon/delete";
 
 //style
 import {
-  MessageCardSection,
   ProfileSection,
   Profile,
   ContentSection,
@@ -12,11 +15,12 @@ import {
   ContentMedia,
   MediaSection,
   BottomSection,
-  OtherInfoSection,
   UsernameSection,
   Username,
   TimeSection,
   TimeT,
+  IconsSection,
+  Icons,
 } from "../../styles/components/card/message";
 import { IMessageCard } from "./message";
 import {
@@ -34,11 +38,34 @@ export const UserMessageCard: FC<IMessageCard> = ({
     User: { id: uid, username, profileImage },
   },
 }) => {
+  const [hover, setHover] = useState(false);
+
   const time = AgoTime({ created: createdAtIso });
+
+  const mouseInHandel = () => {
+    setHover(true);
+  };
+
+  const mouseOutHandel = () => {
+    setHover(false);
+  };
 
   return (
     <>
-      <UserMessageCardSection>
+      <UserMessageCardSection
+        onMouseEnter={mouseInHandel}
+        onMouseLeave={mouseOutHandel}
+      >
+        <IconsSection
+          className={`icon_sec ${hover ? "icon_sec_v" : "icon_sec_uv"}`}
+        >
+          <Icons className="like_icon">
+            <LikeIcon />
+          </Icons>
+          <Icons className="delete_icon">
+            <DeleteIcon />
+          </Icons>
+        </IconsSection>
         <ContentSection>
           <UserTopSection>
             <TextSection>

@@ -5,6 +5,17 @@ export const MessageCardSection = styled.div`
 display: flex;
 margin: 0.8rem 0;
 align-self: flex-start;
+
+.icon_sec_m{
+        margin-left: 0.5rem;
+        
+}
+.icon_sec_v{
+        display: flex;
+}
+.icon_sec_uv{
+        display: none;
+}
 `
 
 export const ProfileSection = styled.div`
@@ -36,6 +47,7 @@ border-radius: 1em;
 border-top-left-radius: 0.1rem;
 margin-left: 0.5rem;
 max-width: 18em;
+}
 
 `
 
@@ -87,4 +99,37 @@ margin-left: 0.3rem;
 export const TimeT = styled.h2`
 color:${props => props.theme.t_secondary};
 font-size: 0.7em;
+`
+export const IconsSection = styled.div`
+display: none;
+align-items: flex-start;
+justify-content: flex-end;
+margin-right: 0.5rem;
+margin-top: 0.5rem;
+
+.like_icon{
+ svg{
+        height: 1.3em;
+        width: 1.3em;
+ }
+ .like_icon_svg{
+        path{
+                fill:${props => props.theme.t_primary}
+        }
+ }
+}
+`
+
+export const Icons = styled.div`
+height: 2em;
+width: 2em;
+border-radius: 5em;
+display: flex;
+align-items: center;
+justify-content: center;
+
+:hover{
+background-color: ${props => props.theme.secondary};
+}
+
 `

@@ -42,10 +42,10 @@ font-size: 1em;
 }
 `
 export const CloseSection = styled.div`
+background-color: ${props => props.theme.primary};
 height: 2em;
 width: 2em;
 border-radius: 5em;
-background-color: ${props => props.theme.primary};
 display: flex;
 align-items: center;
 justify-content: center;
