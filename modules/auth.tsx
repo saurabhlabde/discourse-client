@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 // component
 import { AuthInput } from "../components/input/auth";
@@ -16,10 +16,19 @@ import {
   AuthBottomSection,
 } from "../styles/modules/auth";
 
+import { PopUpMainSection } from "../styles/components/card/popUpMessage";
+import { PopUpMessageCard } from "../components/card/popUpMessage";
+
 export interface IInput {
   name: string;
   placeholder: string;
   value: string;
+}
+
+export interface IPopMessage {
+  id: string;
+  message: string;
+  type: "error" | "success" | string;
 }
 
 interface IAuthPage {
@@ -29,7 +38,17 @@ interface IAuthPage {
   bottomText: string;
   bottomRedirectLink: string;
   buttonName: string;
+  message: Array<IPopMessage>;
   onSubmit: (e: any) => void;
+  setMessage: Dispatch<
+    SetStateAction<
+      {
+        id: string;
+        message: string;
+        type: string;
+      }[]
+    >
+  >;
 }
 
 export const AuthPage: FC<IAuthPage> = ({
@@ -40,7 +59,14 @@ export const AuthPage: FC<IAuthPage> = ({
   bottomRedirectLink,
   onSubmit,
   buttonName,
+  message,
+  setMessage,
 }) => {
+  const messageLength: boolean = message.length >= 1;
+
+  const closeHandel = (id: string) => {
+    console.log("close id is ", id);
+  };
   return (
     <>
       <AuthSection>
@@ -48,6 +74,7 @@ export const AuthPage: FC<IAuthPage> = ({
           <AuthHeadingSection>
             <HeadingAuth heading={heading} />
           </AuthHeadingSection>
+
           <AuthFrom onSubmit={onSubmit ? onSubmit : undefined}>
             <AuthInputSection>
               {props?.map((ins: IInput, i: number) => {
@@ -62,6 +89,20 @@ export const AuthPage: FC<IAuthPage> = ({
             <BottomHeading rLink={bottomRedirectLink} text={bottomText} />
           </AuthBottomSection>
         </AuthCard>
+
+        {messageLength && (
+          <PopUpMainSection>
+            {message?.map((pop: IPopMessage) => {
+              return (
+                <PopUpMessageCard
+                  key={pop.id}
+                  props={pop}
+                  onClose={closeHandel}
+                />
+              );
+            })}
+          </PopUpMainSection>
+        )}
       </AuthSection>
     </>
   );

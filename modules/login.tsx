@@ -1,8 +1,10 @@
 import { useMutation } from "@apollo/client";
+import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { LOGIN } from "../gql/auth/login";
 import Username from "../pages/cr/[username]";
+import { getErrorMessage } from "../utils/message";
 
 // component
 import { AuthPage } from "./auth";
@@ -12,6 +14,14 @@ export const LoginPage = () => {
     username: "",
     password: "",
   });
+
+  const [popMessage, setPopMessage] = useState([
+    {
+      id: nanoid(),
+      message: "Invalid username",
+      type: "error",
+    },
+  ]);
 
   const inputForm = [
     {
@@ -35,6 +45,11 @@ export const LoginPage = () => {
       router.push("/");
     }
   }, []);
+
+  useEffect(() => {
+    const resMessage = getErrorMessage(error);
+    console.log(resMessage, "resMessage");
+  }, [error]);
 
   useEffect(() => {
     if (data?.login) {
@@ -78,6 +93,8 @@ export const LoginPage = () => {
       bottomText={"SIGN UP"}
       bottomRedirectLink={"/register"}
       buttonName={"Log In"}
+      message={popMessage}
+      setMessage={setPopMessage}
       onSubmit={onSubmitHandel}
     />
   );
