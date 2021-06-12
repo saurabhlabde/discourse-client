@@ -13,6 +13,8 @@
     "firstname",
     "inmemory",
     "lastname",
+    "toast",
+    "toastify",
     "topleft"
   ]
 }

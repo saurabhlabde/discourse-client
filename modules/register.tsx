@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { REGISTER } from "../gql/auth/register";
+import { getErrorMessage } from "../utils/message";
 
 // component
 import { AuthPage } from "./auth";
@@ -16,9 +17,20 @@ export const RegisterPage = () => {
     password: "",
   });
 
-  const [onRegister, { data, loading, error }] = useMutation(REGISTER);
+  const [popMessage, setPopMessage] = useState([]);
+
+  const [onRegister, { data, loading, error }] = useMutation(REGISTER, {
+    onError() {},
+  });
 
   const router = useRouter();
+
+  useEffect(() => {
+    const resMessage = getErrorMessage(error);
+    if (resMessage) {
+      setPopMessage(resMessage);
+    }
+  }, [error]);
 
   useEffect(() => {
     if (data?.createUser) {
@@ -90,6 +102,7 @@ export const RegisterPage = () => {
       bottomRedirectLink={"/login"}
       buttonName={"Register"}
       onSubmit={onSubmitHandel}
+      message={popMessage}
     />
   );
 };

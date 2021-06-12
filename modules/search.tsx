@@ -26,6 +26,7 @@ export const SearchPage = ({ router }) => {
     variables: {
       query,
     },
+    onError() {},
   });
 
   const {

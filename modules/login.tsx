@@ -15,13 +15,7 @@ export const LoginPage = () => {
     password: "",
   });
 
-  const [popMessage, setPopMessage] = useState([
-    {
-      id: nanoid(),
-      message: "Invalid username",
-      type: "error",
-    },
-  ]);
+  const [popMessage, setPopMessage] = useState([]);
 
   const inputForm = [
     {
@@ -38,7 +32,9 @@ export const LoginPage = () => {
 
   const router = useRouter();
 
-  const [onLogin, { data, loading, error }] = useMutation(LOGIN);
+  const [onLogin, { data, loading, error }] = useMutation(LOGIN, {
+    onError() {},
+  });
 
   useEffect(() => {
     if (localStorage.getItem("JWT_TOKEN")) {
@@ -48,7 +44,10 @@ export const LoginPage = () => {
 
   useEffect(() => {
     const resMessage = getErrorMessage(error);
-    console.log(resMessage, "resMessage");
+
+    if (resMessage) {
+      setPopMessage(resMessage);
+    }
   }, [error]);
 
   useEffect(() => {
@@ -94,7 +93,6 @@ export const LoginPage = () => {
       bottomRedirectLink={"/register"}
       buttonName={"Log In"}
       message={popMessage}
-      setMessage={setPopMessage}
       onSubmit={onSubmitHandel}
     />
   );

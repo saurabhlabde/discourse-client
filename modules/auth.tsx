@@ -1,10 +1,11 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 
 // component
 import { AuthInput } from "../components/input/auth";
 import { HeadingAuth } from "../components/heading/auth";
 import { BottomHeading } from "../components/heading/bottom";
 import { ButtonAuth } from "../components/button/auth";
+import { ToastContainer, toast } from "react-toastify";
 
 // style
 import {
@@ -40,15 +41,11 @@ interface IAuthPage {
   buttonName: string;
   message: Array<IPopMessage>;
   onSubmit: (e: any) => void;
-  setMessage: Dispatch<
-    SetStateAction<
-      {
-        id: string;
-        message: string;
-        type: string;
-      }[]
-    >
-  >;
+}
+
+interface INotify {
+  id: string;
+  message: string;
 }
 
 export const AuthPage: FC<IAuthPage> = ({
@@ -60,13 +57,37 @@ export const AuthPage: FC<IAuthPage> = ({
   onSubmit,
   buttonName,
   message,
-  setMessage,
 }) => {
   const messageLength: boolean = message.length >= 1;
 
-  const closeHandel = (id: string) => {
-    console.log("close id is ", id);
+  const notifyError = ({ id, message }: INotify) => {
+    toast.error(message, {
+      position: toast.POSITION.BOTTOM_CENTER,
+      className: "pop-message pop-message-error",
+      toastId: id,
+    });
   };
+
+  const notifySuccess = ({ id, message }: INotify) => {
+    toast.error(message, {
+      position: toast.POSITION.BOTTOM_CENTER,
+      className: "pop-message pop-message-error",
+      toastId: id,
+    });
+  };
+
+  useEffect(() => {
+    if (message?.length <= 0) return;
+
+    message?.map((pop: IPopMessage) => {
+      if (pop.type === "error") {
+        return notifyError({ id: pop.id, message: pop.message });
+      } else if (pop.type === "success") {
+        return notifySuccess({ id: pop.id, message: pop.message });
+      }
+    });
+  }, [message]);
+
   return (
     <>
       <AuthSection>
@@ -89,20 +110,7 @@ export const AuthPage: FC<IAuthPage> = ({
             <BottomHeading rLink={bottomRedirectLink} text={bottomText} />
           </AuthBottomSection>
         </AuthCard>
-
-        {messageLength && (
-          <PopUpMainSection>
-            {message?.map((pop: IPopMessage) => {
-              return (
-                <PopUpMessageCard
-                  key={pop.id}
-                  props={pop}
-                  onClose={closeHandel}
-                />
-              );
-            })}
-          </PopUpMainSection>
-        )}
+        <ToastContainer />
       </AuthSection>
     </>
   );

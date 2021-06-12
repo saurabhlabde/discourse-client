@@ -36,9 +36,17 @@ export const ChatUser: FC<any> = () => {
 
   const [message, setMessage] = useState([]);
 
-  const { data, loading, error } = useQuery(USER);
+  const { data, loading, error } = useQuery(USER, {
+    onError() {},
+  });
 
-  const { data: mData, loading: mLoading, error: mError } = useQuery(CHAT_USER);
+  const {
+    data: mData,
+    loading: mLoading,
+    error: mError,
+  } = useQuery(CHAT_USER, {
+    onError() {},
+  });
 
   useEffect(() => {
     const load: boolean = loading || mLoading;

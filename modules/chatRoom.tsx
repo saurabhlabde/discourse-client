@@ -45,10 +45,13 @@ export const ChatRoom = ({ router }) => {
     variables: {
       username: roomUser,
     },
+    onError() {},
   });
 
   const [addMessage, { data: mData, loading: mLoading, error: mError }] =
-    useMutation(CREATE_MESSAGE);
+    useMutation(CREATE_MESSAGE, {
+      onError() {},
+    });
 
   const {
     data: gmData,
@@ -58,6 +61,7 @@ export const ChatRoom = ({ router }) => {
     variables: {
       roomUsername: roomUser,
     },
+    onError() {},
   });
 
   const {

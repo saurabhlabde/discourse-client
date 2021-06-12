@@ -13,4 +13,15 @@ export const GlobalStyle = createGlobalStyle`
 .s_cus{
         padding-top: 2rem !important;
 }
+
+.Toastify__toast{
+        min-height: 3.5em;
+        margin-bottom: 0.5rem;
+        border-radius: 1em;
+
+        .Toastify__progress-bar{
+                height: 0.2rem;
+        }
+}
+
 `
