@@ -14,6 +14,11 @@ subscription GetMessageSub($username:String!,$roomUsername:String!){
       username
       profileImage
     }
-  }
+    Like {
+      id
+      userId
+      createdAtIso
+    }
+}
 }
 `

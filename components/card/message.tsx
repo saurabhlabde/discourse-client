@@ -23,6 +23,7 @@ import {
 } from "../../styles/components/card/message";
 import LikeIcon from "../../icon/like";
 import DeleteIcon from "../../icon/delete";
+import LikeFillIcon from "../../icon/likeFill";
 
 export interface IMessage {
   id: number;
@@ -34,9 +35,17 @@ export interface IMessage {
     username: string;
     profileImage: string;
   };
+  Like: Array<{
+    id: number;
+    userId: number;
+    createdAtIso: string;
+  }>;
 }
 export interface IMessageCard {
   props: IMessage;
+  roomUserId: number;
+  onLike?: (id: number) => void;
+  onDelete?: (id: number) => void;
 }
 
 export const MessageCard: FC<IMessageCard> = ({
@@ -46,7 +55,10 @@ export const MessageCard: FC<IMessageCard> = ({
     media,
     createdAtIso,
     User: { id: uid, username, profileImage },
+    Like,
   },
+  onLike,
+  roomUserId,
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -59,6 +71,14 @@ export const MessageCard: FC<IMessageCard> = ({
   const mouseOutHandel = () => {
     setHover(false);
   };
+
+  const getUserId: string | null = localStorage.getItem("UID");
+
+  const liked = Like?.filter((like) => {
+    return like.userId === +getUserId;
+  });
+
+  const hasLike: boolean = liked?.length >= 1;
 
   return (
     <>
@@ -76,7 +96,7 @@ export const MessageCard: FC<IMessageCard> = ({
           />
         </ProfileSection>
         <ContentSection>
-          <TopSection>
+          <TopSection style={{ backgroundColor: hasLike ? "#ff7904" : "" }}>
             <TextSection>
               <ContentText>
                 <span>{text ? text : ""}</span>
@@ -97,7 +117,7 @@ export const MessageCard: FC<IMessageCard> = ({
               </UsernameSection>
               <TimeSection>
                 <TimeT>
-                  <span>{time}</span>
+                  <span>{time ? time : ""}</span>
                 </TimeT>
               </TimeSection>
             </OtherInfoSection>
@@ -108,11 +128,13 @@ export const MessageCard: FC<IMessageCard> = ({
             hover ? "icon_sec_v" : "icon_sec_uv"
           }`}
         >
-          <Icons className="delete_icon">
-            <DeleteIcon />
-          </Icons>
-          <Icons className="like_icon">
-            <LikeIcon />
+          <Icons
+            className="like_icon"
+            onClick={() => {
+              onLike ? onLike(id) : undefined;
+            }}
+          >
+            {hasLike ? <LikeFillIcon /> : <LikeIcon />}
           </Icons>
         </IconsSection>
       </MessageCardSection>

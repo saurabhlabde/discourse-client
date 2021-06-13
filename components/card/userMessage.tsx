@@ -36,7 +36,10 @@ export const UserMessageCard: FC<IMessageCard> = ({
     media,
     createdAtIso,
     User: { id: uid, username, profileImage },
+    Like,
   },
+  roomUserId,
+  onDelete,
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -50,6 +53,14 @@ export const UserMessageCard: FC<IMessageCard> = ({
     setHover(false);
   };
 
+  const getUserId: string | null = localStorage.getItem("UID");
+
+  const liked = Like?.filter((like) => {
+    return like.userId === roomUserId;
+  });
+
+  const hasLike: boolean = liked?.length >= 1;
+
   return (
     <>
       <UserMessageCardSection
@@ -59,15 +70,17 @@ export const UserMessageCard: FC<IMessageCard> = ({
         <IconsSection
           className={`icon_sec ${hover ? "icon_sec_v" : "icon_sec_uv"}`}
         >
-          <Icons className="like_icon">
-            <LikeIcon />
-          </Icons>
-          <Icons className="delete_icon">
+          <Icons
+            className="delete_icon"
+            onClick={() => {
+              onDelete ? onDelete(id) : undefined;
+            }}
+          >
             <DeleteIcon />
           </Icons>
         </IconsSection>
         <ContentSection>
-          <UserTopSection>
+          <UserTopSection style={{ backgroundColor: hasLike ? "#ff7904" : "" }}>
             <TextSection>
               <ContentText>
                 <span>{text ? text : ""}</span>
@@ -88,7 +101,7 @@ export const UserMessageCard: FC<IMessageCard> = ({
               </UsernameSection>
               <TimeSection>
                 <TimeT>
-                  <span>{time}</span>
+                  <span>{time ? time : ""}</span>
                 </TimeT>
               </TimeSection>
             </UserOtherInfoSection>

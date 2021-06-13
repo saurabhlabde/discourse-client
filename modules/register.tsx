@@ -37,6 +37,7 @@ export const RegisterPage = () => {
       if (data.createUser?.Tokens[0].token) {
         localStorage.setItem("JWT_TOKEN", data.createUser?.Tokens[0].token);
         localStorage.setItem("USER", data.createUser.username);
+        localStorage.setItem("UID", data.createUser.id);
         router.push("/");
       }
     }

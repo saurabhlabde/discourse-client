@@ -1,4 +1,6 @@
 import { FC } from "react";
+import MobileIcon from "../icon/mobile";
+import DesktopIcon from "../icon/desktop";
 
 // style
 import {
@@ -7,7 +9,10 @@ import {
   Profile,
   HiMessageSection,
   HiMessage,
+  LeftSection,
+  DeviceSection,
 } from "../styles/components/nav";
+import { ScreenSize } from "../utils/screenSize";
 
 interface INav {
   props: {
@@ -18,6 +23,8 @@ interface INav {
 }
 
 export const Nav: FC<INav> = ({ props: { id, profileImage, username } }) => {
+  const screenSize = ScreenSize();
+
   return (
     <>
       <NavSection>
@@ -30,9 +37,17 @@ export const Nav: FC<INav> = ({ props: { id, profileImage, username } }) => {
             }
           />
         </ProfileSection>
-        <HiMessageSection>
-          <HiMessage>Hello, {username ? username : "user"}</HiMessage>
-        </HiMessageSection>
+
+        <LeftSection>
+          <DeviceSection>
+            {screenSize >= 600 ? <DesktopIcon /> : <MobileIcon />}
+          </DeviceSection>
+          <HiMessageSection>
+            <HiMessage>
+              <span>Hello, {username ? username : "user"}</span>
+            </HiMessage>
+          </HiMessageSection>
+        </LeftSection>
       </NavSection>
     </>
   );

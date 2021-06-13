@@ -14,6 +14,8 @@ import {
 import { MESSAGE } from "../gql/message/get";
 import { MESSAGE_SUB } from "../gql/message/getSub";
 import { UserMessageCard } from "../components/card/userMessage";
+import { LIKE } from "../gql/message/like";
+import { DELETE } from "../gql/message/delete";
 
 export const ChatRoom = ({ router }) => {
   const [hasLoading, setHasLoading] = useState(true);
@@ -37,6 +39,8 @@ export const ChatRoom = ({ router }) => {
 
   const roomUser: string = router?.query?.room;
 
+  // user
+
   const {
     data: tData,
     loading: tLoading,
@@ -48,10 +52,14 @@ export const ChatRoom = ({ router }) => {
     onError() {},
   });
 
+  // create message
+
   const [addMessage, { data: mData, loading: mLoading, error: mError }] =
     useMutation(CREATE_MESSAGE, {
       onError() {},
     });
+
+  // message
 
   const {
     data: gmData,
@@ -64,6 +72,8 @@ export const ChatRoom = ({ router }) => {
     onError() {},
   });
 
+  // message subscription
+
   const {
     data: sData,
     loading: sLoading,
@@ -75,22 +85,37 @@ export const ChatRoom = ({ router }) => {
     },
   });
 
+  // like message
+
+  const [onLike, { data: lData, loading: lLoading, error: lError }] =
+    useMutation(LIKE);
+
+  // delete message
+  const [onDelete, { data: dData, loading: dLoading, error: dError }] =
+    useMutation(DELETE);
+
+  // loading
+
   useEffect(() => {
     const load: boolean = gmLoading || tLoading;
     setHasLoading(load);
   }, [gmLoading, tLoading]);
 
-  // user
+  //set user storage
 
   useEffect(() => {
     setUserName(localStorage.getItem("USER"));
   }, []);
 
+  //call srcoll bar
+
   useEffect(() => {
-    if (!hasLoading && mData) {
+    if (!hasLoading || mData) {
       srcollBarBottom();
     }
   }, [hasLoading, mData]);
+
+  // set user
 
   useEffect(() => {
     if (tData?.getOneUser) {
@@ -98,13 +123,15 @@ export const ChatRoom = ({ router }) => {
     }
   }, [tData?.getOneUser]);
 
-  // message
+  //set message
 
   useEffect(() => {
     if (gmData?.getMessage) {
       setMessages(gmData?.getMessage);
     }
   }, [gmData?.getMessage]);
+
+  // set message
 
   useEffect(() => {
     if (sData?.getMessageSub) {
@@ -141,6 +168,26 @@ export const ChatRoom = ({ router }) => {
     messageSec.scrollTop = messageSec.scrollHeight - messageSec.clientHeight;
   };
 
+  const likeHandel = (id: number) => {
+    if (id) {
+      onLike({
+        variables: {
+          id,
+        },
+      });
+    }
+  };
+
+  const deleteHandel = (id: number) => {
+    if (id) {
+      onDelete({
+        variables: {
+          id,
+        },
+      });
+    }
+  };
+
   if (hasLoading) {
     return <h1>Loading...</h1>;
   }
@@ -155,9 +202,19 @@ export const ChatRoom = ({ router }) => {
           <MessageCardSection id="mc_sec">
             {messages?.map((mess: IMessage) => {
               return mess?.User?.username === userName ? (
-                <UserMessageCard key={mess.id} props={mess} />
+                <UserMessageCard
+                  key={mess.id}
+                  props={mess}
+                  onDelete={deleteHandel}
+                  roomUserId={topUser?.id}
+                />
               ) : (
-                <MessageCard key={mess.id} props={mess} />
+                <MessageCard
+                  key={mess.id}
+                  props={mess}
+                  onLike={likeHandel}
+                  roomUserId={topUser?.id}
+                />
               );
             })}
           </MessageCardSection>

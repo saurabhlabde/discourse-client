@@ -2,16 +2,18 @@ import styled from "styled-components";
 
 
 export const AddMessageSection = styled.div`
-height: 3.5em;
 width: 100%;
-border-radius: 1.3em;
-background-color: ${props => props.theme.secondary};
+height: auto;
 display: flex;
-padding: 0 0.5rem;
+flex-direction: column;
+position: relative;
 `
 export const MessageForm = styled.form`
+background-color: ${props => props.theme.secondary};
+height: 3.5em;
+padding: 0 0.5rem;
+border-radius: 1.3em;
 display: flex;
-height: 100%;
 width: 100%;
 align-items: center;
 justify-content: flex-start;
@@ -91,4 +93,43 @@ svg{
                 fill:${props => props.theme.t_primary}
         }
 }
+`
+
+export const SelectedMediaSection = styled.div`
+height: auto;
+width: auto;
+margin-bottom: 0.5rem;
+position: absolute;
+left: 0;
+bottom: 0;
+transform: translate(0,-70%);
+`
+
+export const SelectedMediaSec = styled.div`
+height: 5em;
+width: 5em ;
+overflow: hidden;
+border-radius: 1em;
+`
+
+export const SelectedMedia = styled.img`
+height: 100%;
+width: 100%;
+object-fit: cover;
+position: relative;
+`
+
+export const SMIconSection = styled.div`
+background-color: rgba(255,255,255,0.6);
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 5em;
+position: absolute;
+right: 0;
+top: 0;
+transform: translate(-10%,10%);
+z-index: 1;
+height: 2em;
+width: 2em;
 `

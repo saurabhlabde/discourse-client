@@ -85,7 +85,9 @@ export const UserCard: FC<IUserCard> = ({ props: { User, lastMessage } }) => {
           </LeftSection>
           <RightSection>
             <TimeSection>
-              <TimeT>{time}</TimeT>
+              <TimeT>
+                <span>{time && time !== "NaNyr" ? time : ""}</span>
+              </TimeT>
             </TimeSection>
           </RightSection>
         </CardSection>

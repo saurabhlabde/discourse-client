@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 
 
 export const CREATE_MESSAGE = gql`
-mutation CreateMessage($roomUsername:String!,$text:String!,$media:String!){
+mutation CreateMessage($roomUsername:String!,$text:String,$media:String){
   createMessage(create: { roomUsername: $roomUsername, text: $text, media: $media }) {
     id
     text
@@ -14,6 +14,11 @@ mutation CreateMessage($roomUsername:String!,$text:String!,$media:String!){
       id
       username
       profileImage
+    }
+    Like {
+      id
+      userId
+      createdAtIso
     }
   }
 }
