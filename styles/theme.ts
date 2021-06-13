@@ -1,4 +1,4 @@
-export const theme = {
+const theme = {
         primary: '#040507',
         secondary: '#0D0D0D',
         t_primary: '#FEFEFE',
@@ -7,3 +7,5 @@ export const theme = {
         b_primary: '#246AFD',
         b_secondary: '',
 }
+
+export default theme

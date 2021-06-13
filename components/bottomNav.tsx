@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackIcon from "../icon/back";
 import HomeIcon from "../icon/home";
 import LightIcon from "../icon/light";
@@ -13,6 +13,12 @@ import {
 export const NavBottom = () => {
   const [visible, setVisible] = useState(false);
 
+  const themeHandel = () => {};
+
+  const handelVisble = () => {
+    setVisible(!visible);
+  };
+
   const Icons = [
     {
       link: "/",
@@ -20,20 +26,11 @@ export const NavBottom = () => {
       icon: <HomeIcon />,
     },
     {
-      link: "",
-      name: "theme",
-      icon: <LightIcon />,
-    },
-    {
       link: "/logout",
       name: "logout",
       icon: <LogoutIcon />,
     },
   ];
-
-  const handelVisble = () => {
-    setVisible(!visible);
-  };
 
   return (
     <>
@@ -52,7 +49,7 @@ export const NavBottom = () => {
             return (
               <>
                 <Link href={icon.link}>
-                  <NavItemSection key={i} className={`ni_${icon.name}`}>
+                  <NavItemSection key={`nb_${i}`} className={`ni_${icon.name}`}>
                     {icon.icon}
                   </NavItemSection>
                 </Link>

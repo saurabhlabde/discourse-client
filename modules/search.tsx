@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
+import { NavBottom } from "../components/bottomNav";
 import { BackButton } from "../components/button/back";
 import { IUser, SearchCard } from "../components/card/search";
 import { RECOMMENDATION } from "../gql/recommendation";
@@ -90,6 +91,7 @@ export const SearchPage = ({ router }) => {
             </>
           )}
         </UserCardSection>
+        <NavBottom />
       </ChatsUserSection>
     </>
   );

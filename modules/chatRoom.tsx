@@ -16,6 +16,7 @@ import { MESSAGE_SUB } from "../gql/message/getSub";
 import { UserMessageCard } from "../components/card/userMessage";
 import { LIKE } from "../gql/message/like";
 import { DELETE } from "../gql/message/delete";
+import { NavBottom } from "../components/bottomNav";
 
 export const ChatRoom = ({ router }) => {
   const [hasLoading, setHasLoading] = useState(true);
