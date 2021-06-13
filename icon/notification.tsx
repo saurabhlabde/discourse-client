@@ -4,7 +4,7 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const Notificationb = ({
+const Notification = ({
   title,
   titleId,
   ...props
