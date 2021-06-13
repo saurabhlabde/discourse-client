@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import { Loading } from "../components/loading";
 // component
 import { ChatUser } from "./chatUser";
 
@@ -20,7 +20,7 @@ export const IndexPage: FC = () => {
   }, []);
 
   if (hasLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (!hasLoading) {

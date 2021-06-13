@@ -17,6 +17,7 @@ import { UserMessageCard } from "../components/card/userMessage";
 import { LIKE } from "../gql/message/like";
 import { DELETE } from "../gql/message/delete";
 import { NavBottom } from "../components/bottomNav";
+import { Loading } from "../components/loading";
 
 export const ChatRoom = ({ router }) => {
   const [hasLoading, setHasLoading] = useState(true);
@@ -190,7 +191,7 @@ export const ChatRoom = ({ router }) => {
   };
 
   if (hasLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (!hasLoading) {

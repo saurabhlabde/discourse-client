@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from "react";
 import { Nav } from "../components/nav";
 import { SearchBox } from "./searchCard";
 import { UserCard } from "../components/card/user";
+import { Loading } from "../components/loading";
 
 // style
 import {
@@ -72,7 +73,7 @@ export const ChatUser: FC<any> = () => {
   }, [mData?.chatUsers]);
 
   if (hasLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (!hasLoading) {

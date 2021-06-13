@@ -16,8 +16,10 @@ import {
 } from "../styles/modules/chatUser";
 import { SearchMSection } from "../styles/modules/search";
 import { SearchBox } from "./searchCard";
+import { Loading } from "../components/loading";
 
 export const SearchPage = ({ router }) => {
+  const [hasLoading, setHasLoading] = useState(true);
   const [searchData, setSearchData] = useState([]);
   const [recommendationData, setRecommendationData] = useState([]);
 
@@ -41,6 +43,11 @@ export const SearchPage = ({ router }) => {
   });
 
   useEffect(() => {
+    const load: boolean = loading || rLoading;
+    setHasLoading(load);
+  }, [loading, rLoading]);
+
+  useEffect(() => {
     if (data?.search) {
       setSearchData(data?.search);
     }
@@ -51,6 +58,10 @@ export const SearchPage = ({ router }) => {
       setRecommendationData(rData?.recommendation);
     }
   }, [rData?.recommendation]);
+
+  if (hasLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
