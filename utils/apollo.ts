@@ -1,11 +1,14 @@
 import { split } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
-import { ApolloClient } from "apollo-client";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
-import { InMemoryCache } from "apollo-cache-inmemory";
 import { setContext } from "apollo-link-context";
 
+import {
+        ApolloClient,
+        InMemoryCache,
+        NormalizedCacheObject,
+} from '@apollo/client'
 interface Definition {
         kind: string;
         operation?: string;
@@ -42,7 +45,7 @@ const authLink = setContext(() => {
         };
 });
 
-const link = process.browser
+const link: any = process.browser
         ? split(
                 ({ query }) => {
                         const { kind, operation }: Definition = getMainDefinition(query);
@@ -56,4 +59,5 @@ const link = process.browser
 export default new ApolloClient({
         link,
         cache: new InMemoryCache({}),
+
 });
