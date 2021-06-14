@@ -14,11 +14,13 @@ interface Definition {
         operation?: string;
 }
 
-const wsUrl = `ws://localhost:5000/graphql`;
+const URL: string = 'https://discourse-007.herokuapp.com/graphql'
+
+const URL_WS: string = 'ws://discourse-007.herokuapp.com/graphql'
 
 const wsLink = process.browser
         ? new WebSocketLink({
-                uri: wsUrl,
+                uri: URL_WS,
                 options: {
                         lazy: true,
                         reconnect: true,
@@ -33,7 +35,7 @@ const wsLink = process.browser
         : null;
 
 const httpLink = new HttpLink({
-        uri: "http://localhost:5000/graphql",
+        uri: URL,
 });
 
 const authLink = setContext(() => {
