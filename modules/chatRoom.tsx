@@ -194,6 +194,8 @@ export const ChatRoom = ({ router }) => {
     return <Loading />;
   }
 
+  const profileImage: string = localStorage.getItem("PROFILE_IMG");
+
   if (!hasLoading) {
     return (
       <>
@@ -225,9 +227,7 @@ export const ChatRoom = ({ router }) => {
               name="value"
               onChange={valueChangeHandel}
               onSubmit={addMessageHanel}
-              profileImage={
-                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.S6eD5sNMZb5C-oPNMYfTIwHaEx%26pid%3DApi&f=1"
-              }
+              profileImage={profileImage}
               value={value}
             />
           </AddMessageSection>

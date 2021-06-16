@@ -13,6 +13,7 @@ export const LogoutPage = () => {
     localStorage.removeItem("JWT_TOKEN");
     localStorage.removeItem("USER");
     localStorage.removeItem("UID");
+    localStorage.removeItem("PROFILE_IMG");
   };
 
   return <></>;

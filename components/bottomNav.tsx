@@ -32,6 +32,8 @@ export const NavBottom = () => {
     },
   ];
 
+  const profileImage: string = localStorage.getItem("PROFILE_IMG");
+
   return (
     <>
       <NavBottomSection>
@@ -39,7 +41,9 @@ export const NavBottom = () => {
           <NavItemSection>
             <ProfileSection
               src={
-                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.IwhOChg5puRQdL2Fn-rZgAAAAA%26pid%3DApi&f=1"
+                profileImage
+                  ? profileImage
+                  : "https://i.ibb.co/R7nKxRV/gradienta-1-Lirzgcp-Y2c-unsplash.jpg"
               }
             />
           </NavItemSection>

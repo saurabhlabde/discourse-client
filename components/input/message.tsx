@@ -58,7 +58,13 @@ export const AddMessage: FC<IAddMessage> = ({
         </SelectedMediaSection>
         <MessageForm onSubmit={onSubmit ? onSubmit : undefined}>
           <ProfileSection>
-            <Profile src={profileImage} />
+            <Profile
+              src={
+                profileImage
+                  ? profileImage
+                  : "https://i.ibb.co/R7nKxRV/gradienta-1-Lirzgcp-Y2c-unsplash.jpg"
+              }
+            />
           </ProfileSection>
           <InputSection>
             <Input
