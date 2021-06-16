@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import MobileIcon from "../icon/mobile";
 import DesktopIcon from "../icon/desktop";
 
@@ -12,6 +12,7 @@ import {
   LeftSection,
   DeviceSection,
 } from "../styles/components/nav";
+
 import { ScreenSize } from "../utils/screenSize";
 
 interface INav {
@@ -23,7 +24,13 @@ interface INav {
 }
 
 export const Nav: FC<INav> = ({ props: { id, profileImage, username } }) => {
-  const screenSize = ScreenSize();
+  const [screenSize, setScreenSize] = useState(500);
+
+  const ViewPort: number = ScreenSize();
+
+  useEffect(() => {
+    setScreenSize(ViewPort);
+  }, [ViewPort]);
 
   return (
     <>
@@ -40,7 +47,7 @@ export const Nav: FC<INav> = ({ props: { id, profileImage, username } }) => {
 
         <LeftSection>
           <DeviceSection>
-            {screenSize >= 600 ? <DesktopIcon /> : <MobileIcon />}
+            {screenSize >= 800 ? <DesktopIcon /> : <MobileIcon />}
           </DeviceSection>
           <HiMessageSection>
             <HiMessage>

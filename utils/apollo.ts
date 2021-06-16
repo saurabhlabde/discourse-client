@@ -14,9 +14,11 @@ interface Definition {
         operation?: string;
 }
 
-const URL: string = 'https://discourse-007.herokuapp.com/graphql'
+const environment: boolean = process.env.NODE_ENV === 'development'
 
-const URL_WS: string = 'wss://discourse-007.herokuapp.com/graphql'
+const URL: string = environment ? 'http://localhost:5000/graphql' : 'https://discourse-007.herokuapp.com/graphql'
+
+const URL_WS: string = environment ? 'ws://localhost:5000/graphql' : 'wss://discourse-007.herokuapp.com/graphql'
 
 const wsLink = process.browser
         ? new WebSocketLink({
