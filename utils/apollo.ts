@@ -16,7 +16,7 @@ interface Definition {
 
 const URL: string = 'https://discourse-007.herokuapp.com/graphql'
 
-const URL_WS: string = 'ws://discourse-007.herokuapp.com/graphql'
+const URL_WS: string = 'wss://discourse-007.herokuapp.com/graphql'
 
 const wsLink = process.browser
         ? new WebSocketLink({
