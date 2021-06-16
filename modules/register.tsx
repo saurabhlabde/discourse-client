@@ -38,6 +38,7 @@ export const RegisterPage = () => {
         localStorage.setItem("JWT_TOKEN", data.createUser?.Tokens[0].token);
         localStorage.setItem("USER", data.createUser.username);
         localStorage.setItem("UID", data.createUser.id);
+        localStorage.setItem("PROFILE_IMG", data.createUser.profileImage);
         router.push("/");
       }
     }
